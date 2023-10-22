@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Krupp</title>
+    <link rel="icon" type="image/svg+xml" href="/public/books.svg" />
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Navbar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Footer.css" asp-append-version="true" />
+    @* <link rel="stylesheet" href="~/pwa_trabalho_sga.styles.css" asp-append-version="true" /> *@
+</head>
+
+<body>
+    <header class="header__container">
+        <nav class="nav__container">
+            <div class="nav__left">
+                <a class="logo" asp-area="" asp-controller="Home" asp-action="Inicio">Krupp</a>
+            </div>
+            <ul class="nav__center">
+                <li class="nav__item active">
+                    <a asp-area="" asp-controller="Home" asp-action="Inicio">Inicio</a>
+                </li>
+                <li class="nav__item">
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy">Notas</a>
+                </li>
+                <li class="nav__item">
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy">Exames</a>
+                </li>
+                <li class="nav__item">
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy">Mensagens</a>
+                </li>
+            </ul>
+            <div class="nav__right">
+                <button className="button">Logout</button>
+            </div>
+        </nav>
+        <hr class="hr"/>
+    </header>
+    <div class="container">
+        <main role="main" class="">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer__container">
+        <div class="footer__content">
+            &copy; 2023 - Krupp - All rights reserved <br />
+        </div>
+        <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

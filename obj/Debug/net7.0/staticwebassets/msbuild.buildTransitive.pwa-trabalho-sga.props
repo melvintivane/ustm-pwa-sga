@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\pwa-trabalho-sga.props" />
-</Project>

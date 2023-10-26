@@ -235,3 +235,20 @@ _Pvt_Extensions
 src/.vs/Lorni/v17/.suo
 *.dll
 /Digital.API/Storage/wtf-producao-ibpf.josn
+
+
+# Arquivos e diretórios de compilação e saída
+bin/
+obj/
+obj/Debug/
+pwa-trabalho-sga.staticwebassets.runtime.json
+obj/Debug/net7.0/
+pwa-trabalho-sga.GeneratedMSBuildEditorConfig.editorconfig
+pwa-trabalho-sga.csproj.CoreCompileInputs.cache
+pwa-trabalho-sga.csproj.FileListAbsolute.txt
+pwa-trabalho-sga.genruntimeconfig.cache
+obj/Debug/net7.0/ref/
+obj/Debug/net7.0/refint/
+obj/Debug/net7.0/staticwebassets.build.json
+obj/Debug/net7.0/staticwebassets.development.json
+obj/Debug/net7.0/staticwebassets.pack.json

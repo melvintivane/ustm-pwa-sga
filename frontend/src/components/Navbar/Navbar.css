@@ -1,0 +1,38 @@
+.nav__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1024px;
+  height: 44px;
+  margin: 20px 0px 7px 0px;
+}
+
+.nav__left {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.nav__center {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.active {
+  border-bottom: 3px solid #4548F5;
+  padding: 10px;
+}
+
+.nav__center > li {
+  cursor: pointer;
+}
+
+.hr {
+  width: 99.8%;
+  border: 0.5px solid #ececec;
+}

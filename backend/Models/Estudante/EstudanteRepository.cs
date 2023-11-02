@@ -1,18 +1,16 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace pwa_trabalho_sga.Models;
 public class EstudanteRepository : IEstudanteRepository
 {
     private readonly ApplicationDbContext _dbContext;
-    // private readonly IMapper _mapper;
+    private readonly IMapper _mapper;
 
-    public EstudanteRepository(ApplicationDbContext dbContext)
+    public EstudanteRepository(ApplicationDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
-        // _mapper = mapper;
+        _mapper = mapper;
     }
 
     public async Task<Estudante?> Save(Estudante _estudante)
@@ -21,48 +19,46 @@ public class EstudanteRepository : IEstudanteRepository
 
         if (novoEstudante == null)
         {
-            novoEstudante.NrEstudante = _estudante.NrEstudante;
-            novoEstudante.Nome = _estudante.Nome;
-            novoEstudante.Turma = _estudante.Turma;
-            novoEstudante.Curso = _estudante.Curso;
+            novoEstudante = new Estudante
+            {
+                NrEstudante = _estudante.NrEstudante,
+                Password = BCrypt.Net.BCrypt.HashPassword(_estudante.Password),
+                Nome = _estudante.Nome,
+                Turma = _estudante.Turma,
+                Curso = _estudante.Curso
+            };
 
             await _dbContext.Estudantes.AddAsync(novoEstudante);
             await _dbContext.SaveChangesAsync();
 
             return novoEstudante;
-
         }
-
-        // var novoEstudante = new Estudante
-        // {
-        //     NrEstudante = _estudante.NrEstudante,
-        //     Nome = _estudante.Nome,
-        //     Turma = _estudante.Turma,
-        //     Curso = _estudante.Curso
-        // };
-
-        // await _dbContext.Estudantes.AddAsync(novoEstudante);
-        // await _dbContext.SaveChangesAsync();
 
         return null;
     }
+    
 
     public async Task<Estudante?> Update(Guid id, Estudante _estudante)
     {
-        var estudante = await _dbContext.Estudantes.FirstOrDefaultAsync(x => x.Id == id);
+        var estudante = await GetOne(id);
         if (estudante != null)
         {
             estudante.NrEstudante = _estudante.NrEstudante;
             estudante.Nome = _estudante.Nome;
             estudante.Nome = _estudante.Nome;
             estudante.Nome = _estudante.Nome;
+
+            await _dbContext.SaveChangesAsync();
+
+            return estudante;
         }
+
         return null;
     }
 
     public async Task<Estudante?> GetOne(Guid id)
     {
-        var estudante = await _dbContext.Estudantes.FirstOrDefaultAsync(x => x.Id == id);
+        var estudante = await _dbContext.Estudantes.FindAsync(id);
         if (estudante != null)
         {
             return estudante;
@@ -77,15 +73,23 @@ public class EstudanteRepository : IEstudanteRepository
 
         if (values != null)
         {
-            // return _mapper.Map<List<Estudante>>(values);
+            return _mapper.Map<List<Estudante>>(values);
         }
 
         return null;
     }
 
-
-    public async Task<bool> Delete(int NrEstudante)
+    public async Task<bool> Delete(Guid id)
     {
-        return true;
+        var estudante = await _dbContext.Estudantes.FindAsync(id);
+
+        if (estudante != null)
+        {
+            _dbContext.Estudantes.Remove(estudante);
+            await _dbContext.SaveChangesAsync();
+
+            return true;
+        }
+        return false;
     }
 }

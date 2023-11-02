@@ -5,5 +5,5 @@ public interface IEstudanteRepository
     Task<Estudante?> Update(Guid id, Estudante estudante);
     Task<List<Estudante>?> GetAll();
     Task<Estudante?> GetOne(Guid id);
-    Task<bool> Delete(int NrEstudante);
+    Task<bool> Delete(Guid id);
 } 

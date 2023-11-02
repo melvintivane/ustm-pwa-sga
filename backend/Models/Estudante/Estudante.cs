@@ -10,6 +10,7 @@ public class Estudante
     public Guid Id { get; set; }
     public UserRole Role = UserRole.Estudante;
     public int? NrEstudante { get; set; }
+    public string? Password { get; set; }
     public string? Nome { get; set; }
     public string? Turma { get; set; }
     public string? Curso { get; set; }

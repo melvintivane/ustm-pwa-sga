@@ -3,6 +3,7 @@ using pwa_trabalho_sga.Models;
 
 namespace pwa_trabalho_sga.Controllers;
 
+[ApiController]
 public class AdminController : ControllerBase
 {
     private readonly IEstudanteRepository _estudanteRepository;
@@ -20,10 +21,11 @@ public class AdminController : ControllerBase
         return Ok(item);
     }
 
-    [HttpPut("update")]
+    [HttpPut("update/{id}")]
     public async Task<IActionResult> Update(Guid id, [FromBody] Estudante estudante)
     {
-        var item = await _estudanteRepository.Save(estudante);
+        var item = await _estudanteRepository.Update(id, estudante);
+        
         return Ok(item);
     }
 
@@ -39,6 +41,14 @@ public class AdminController : ControllerBase
     public async Task<IActionResult> Get(Guid id)
     {
         var estudante = await _estudanteRepository.GetOne(id);
+
+        return Ok(estudante);
+    }
+
+    [HttpDelete("delete/{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var estudante = await _estudanteRepository.Delete(id);
 
         return Ok(estudante);
     }

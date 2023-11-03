@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "./Login.css";
 import axios from "axios"
+import {useNavigate} from "react-router-dom"
 
 const Login = () => {
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     NrEstudante: undefined,
     Password: undefined,
   });
+  
 
   const handleChange = (e) => {
     setCredentials((previous) => ({
@@ -22,7 +25,7 @@ const Login = () => {
 
     try {
       const response = await axios.post("http://localhost:5115/api/login", credentials);
-      console.log(response);
+      navigate("/")
     } catch (error) {
       console.log(error);
     }

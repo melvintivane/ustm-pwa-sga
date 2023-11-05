@@ -1,8 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-
 using pwa_trabalho_sga.Models;
-using Microsoft.AspNetCore.Cors;
 
 namespace pwa_trabalho_sga.Controllers;
 

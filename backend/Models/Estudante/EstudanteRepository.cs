@@ -21,11 +21,11 @@ public class EstudanteRepository : IEstudanteRepository
         {
             novoEstudante = new Estudante
             {
+                Role = UserRole.Estudante.ToString(),
                 NrEstudante = _estudante.NrEstudante,
                 Password = BCrypt.Net.BCrypt.HashPassword(_estudante.Password),
                 Nome = _estudante.Nome,
-                Turma = _estudante.Turma,
-                Curso = _estudante.Curso
+                NumeroBI = _estudante.NumeroBI
             };
 
             await _dbContext.Estudantes.AddAsync(novoEstudante);
@@ -43,10 +43,8 @@ public class EstudanteRepository : IEstudanteRepository
         var estudante = await GetOne(id);
         if (estudante != null)
         {
-            estudante.NrEstudante = _estudante.NrEstudante;
             estudante.Nome = _estudante.Nome;
-            estudante.Nome = _estudante.Nome;
-            estudante.Nome = _estudante.Nome;
+            estudante.NumeroBI = _estudante.NumeroBI;
 
             await _dbContext.SaveChangesAsync();
 

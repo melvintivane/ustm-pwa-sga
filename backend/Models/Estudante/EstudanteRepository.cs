@@ -43,9 +43,16 @@ public class EstudanteRepository : IEstudanteRepository
         var estudante = await GetOne(id);
         if (estudante != null)
         {
-            estudante.Nome = _estudante.Nome;
-            estudante.NumeroBI = _estudante.NumeroBI;
+            if (_estudante.Nome != null)
+            {
+                estudante.Nome = _estudante.Nome;
+            }
 
+            if (_estudante.NumeroBI != null)
+            {
+                estudante.NumeroBI = _estudante.NumeroBI;
+            }
+        
             await _dbContext.SaveChangesAsync();
 
             return estudante;

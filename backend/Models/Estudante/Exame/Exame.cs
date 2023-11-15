@@ -10,9 +10,10 @@ public class Exame
     public Guid Id { get; set; }
     public Guid Estudante_Id { get; set; }
     public Guid Disciplina_Id { get; set; }
-    public double? NotaFrequencia { get; set; }
-    public double? Normal { get; set; }
-    public double? Recorrencia { get; set; }
+    public double NotaFrequencia { get; set; }
+    public double Normal { get; set; }
+    public double Recorrencia { get; set; }
+    public double Media { get; set; }
     public string? Obs { get; set; }
     public DateTime Created_At { get; set; }
 }

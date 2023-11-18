@@ -7,10 +7,12 @@ namespace pwa_trabalho_sga.Controllers;
 public class AdminController : ControllerBase
 {
     private readonly IEstudanteRepository _estudanteRepository;
+    private readonly INotaRepository _notaRepository;
 
-    public AdminController(IEstudanteRepository estudanteRepository)
+    public AdminController(IEstudanteRepository estudanteRepository, INotaRepository notaRepository)
     {
         _estudanteRepository = estudanteRepository;
+        _notaRepository =  notaRepository;
     }
 
     //CRIAR ESTUDANTE
@@ -30,7 +32,7 @@ public class AdminController : ControllerBase
     }
 
     [HttpGet("estudantes")]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAllEstudantes()
     {
         var estudantes = await _estudanteRepository.GetAll();
 
@@ -51,5 +53,13 @@ public class AdminController : ControllerBase
         var estudante = await _estudanteRepository.Delete(id);
 
         return Ok(estudante);
+    }
+
+    [HttpGet("notas")]
+    public async Task<IActionResult> GetAllNotas()
+    {
+        var notas = await _notaRepository.GetNotas();
+
+        return Ok(notas);
     }
 }

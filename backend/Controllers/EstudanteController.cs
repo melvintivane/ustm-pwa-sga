@@ -13,10 +13,10 @@ public class EstudanteController : ControllerBase
         _notaRepository = notaRepository;
     }
 
-    [HttpGet("notas")]
-    public async Task<IActionResult> GetAll()
+    [HttpGet("notas/{estudante}/{disciplina}")]
+    public async Task<IActionResult> GetNotas(Guid estudante, Guid disciplina)
     {
-        var notas = await _notaRepository.GetNotas();
+        var notas = await _notaRepository.GetNotasPorId(estudante, disciplina);
 
         return Ok(notas);
     }

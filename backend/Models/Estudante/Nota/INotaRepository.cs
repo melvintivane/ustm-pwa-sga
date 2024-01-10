@@ -4,5 +4,6 @@ public interface INotaRepository
 {
     Task<Nota?> AddNotas(Guid estudante, Guid disciplina, Nota notas);
     Task<Nota?> UpdateNotas(Guid estudante, Guid disciplina, Nota notas);
+    Task<List<Nota>?> GetNotasPorId(Guid estudante, Guid disciplina);
     Task<List<Nota>?> GetNotas();
 }

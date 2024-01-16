@@ -12,10 +12,3 @@ public class Disciplina
     public string? Nome { get; set; }
     public DateTime Created_At { get; set; }
 }
-
-// Table disciplinas {
-//   id integer [primary key]
-//   nome varchar
-//   nota_id integer
-//   created_at timestamp 
-// }

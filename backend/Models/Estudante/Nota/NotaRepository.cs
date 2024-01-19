@@ -1,15 +1,10 @@
-
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Npgsql.Internal.TypeHandlers;
 
 namespace pwa_trabalho_sga.Models;
 
-
-
 public class NotaRepository : INotaRepository 
 {
-
     private readonly ApplicationDbContext _dbContext;
     private readonly IMapper _mapper;
 
@@ -96,12 +91,12 @@ public class NotaRepository : INotaRepository
                 somaNotas += notas.Trabalho2;
             }
            
-           if (quantidadeAvaliacoes > 0)
-           {
+            if (quantidadeAvaliacoes > 0)
+            {
                 notas.Media = somaNotas / quantidadeAvaliacoes;
-           }
-            
+            }
         }
+        await _dbContext.SaveChangesAsync();
         
         return notas;
     }
@@ -117,5 +112,15 @@ public class NotaRepository : INotaRepository
         return null;
     }
 
-    
+
+    public async Task<List<Nota>?> GetNotasPorId(Guid estudante, Guid disciplina) {
+        List<Nota> notas = await _dbContext.Notas.Where(x => x.Estudante_Id == estudante && x.Disciplina_Id == disciplina).ToListAsync();
+
+        if (notas != null)
+        {
+            return _mapper.Map<List<Nota>>(notas);
+        }
+
+        return null;
+    }
 }

@@ -9,6 +9,7 @@ builder.Services.AddControllersWithViews();
 //
 builder.Services.AddScoped<IEstudanteRepository, EstudanteRepository>();
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();
+builder.Services.AddScoped<INotaRepository, NotaRepository>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddControllersWithViews();

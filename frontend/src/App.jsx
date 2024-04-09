@@ -1,6 +1,7 @@
 import Navbar from "../src/components/Navbar/Navbar";
 import Footer from "../src/components/Footer/Footer";
 import Login from "./pages/Login/Login";
+import Estudante from "./pages/Estudante/Estudante";
 import "./App.css";
 import Home from "./pages/Home/Home";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/estudante",
+        element: <Estudante />,
       },
     ],
   },
